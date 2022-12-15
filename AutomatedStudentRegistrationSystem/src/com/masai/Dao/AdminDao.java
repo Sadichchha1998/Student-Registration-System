@@ -4,7 +4,4 @@ public interface AdminDao {
 
 	
 	
-	
-	
-	
 }

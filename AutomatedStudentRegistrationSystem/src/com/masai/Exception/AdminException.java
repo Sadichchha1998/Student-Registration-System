@@ -2,12 +2,11 @@ package com.masai.Exception;
 
 public class AdminException {
 
-	@Override
-	public String toString() {
-		return "AdminException []";
+	//making constructor
+	public AdminException(){}
+	
+	public AdminException(String message) {
+		super();
 	}
-	
-
-	
 	
 }
