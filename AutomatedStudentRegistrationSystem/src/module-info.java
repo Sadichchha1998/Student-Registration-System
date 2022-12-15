@@ -5,6 +5,6 @@
  * @author Vozon
  *
  */
-module AutomatedStudentRegistrationSystem {
+module sad {
 	requires java.sql;
 }
