@@ -1,61 +1,69 @@
 package com.masai.Model;
 
 public class Batch {
-	 private int B_id;
-	private String B_name;
-	private String Duration ;
-	private int Seats;
-	private int c_id;
-	private String Division;
-	public int getB_id() {
-		return B_id;
-	}
-	public void setB_id(int b_id) {
-		B_id = b_id;
-	}
-	public String getB_name() {
-		return B_name;
-	}
-	public void setB_name(String b_name) {
-		B_name = b_name;
-	}
-	public String getDuration() {
-		return Duration;
-	}
-	public void setDuration(String duration) {
-		Duration = duration;
-	}
-	public int getSeats() {
-		return Seats;
-	}
-	public void setSeats(int seats) {
-		Seats = seats;
-	}
-	public int getC_id() {
-		return c_id;
-	}
-	public void setC_id(int c_id) {
-		this.c_id = c_id;
-	}
-	public String getDivision() {
-		return Division;
-	}
-	public void setDivision(String division) {
-		Division = division;
-	}
-	public Batch(int b_id, String b_name, String duration, int seats, int c_id, String division) {
+
+
+	private int bid;
+	private String name;
+	private int duration;
+	private int seats;
+	private int cid;
+	
+	public Batch() {}
+
+	public Batch(int bid, String name, int duration, int seats, int cid) {
 		super();
-		B_id = b_id;
-		B_name = b_name;
-		Duration = duration;
-		Seats = seats;
-		this.c_id = c_id;
-		Division = division;
-	}
-	@Override
-	public String toString() {
-		return "Batch [B_id=" + B_id + ", B_name=" + B_name + ", Duration=" + Duration + ", Seats=" + Seats + ", c_id="
-				+ c_id + ", Division=" + Division + "]";
+		this.bid = bid;
+		this.name = name;
+		this.duration = duration;
+		this.seats = seats;
+		this.cid = cid;
 	}
 
+
+
+	public int getBid() {
+		return bid;
+	}
+
+	public void setBid(int bid) {
+		this.bid = bid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getDuration() {
+		return duration;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+
+	public int getSeats() {
+		return seats;
+	}
+
+	public void setSeats(int seats) {
+		this.seats = seats;
+	}
+
+	public int getCid() {
+		return cid;
+	}
+
+	public void setCid(int cid) {
+		this.cid = cid;
+	}
+	
+	
+	
+	
+	
 }

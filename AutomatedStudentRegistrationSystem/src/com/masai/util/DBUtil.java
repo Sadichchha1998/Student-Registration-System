@@ -9,29 +9,28 @@ import java.sql.DriverManager;
 
 public class DBUtil {
 	public static Connection ProvideConnection() {
-		Connection conn = null;
 		
-		try {
-			Class.forName("com.mysql.cj. jdbc.Driver");
-		} catch (ClassNotFoundException e1) {
+			Connection conn = null;
 			
-			e1.printStackTrace();
-		}
-		// Here given path of database
-		String url="jdbc:mysql://localhost:3306/project";
-		
-		try {
-			// Here connect DriverManeger to get connection method
-			// root is user_name , "2580" is password
+			try {
+				Class.forName("com.mysql.cj.jdbc.Driver");
+			} catch (ClassNotFoundException e1) {
+				
+				e1.printStackTrace();
+			}
+			// Here given path of database
+			String url="jdbc:mysql://localhost:3306/pro";
 			
-		 	conn= DriverManager.getConnection(url,"root","2580");
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
+			try {
+				// Here connect DriverManeger to get connection method
+				// root is user_name , "2580" is password
+				
+			 	conn= DriverManager.getConnection(url,"root","2580");
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+			}
+			// return type is connection.
+			return conn;
 		}
-		// return type is connection.
-		return conn;
-	}
-
-
 }

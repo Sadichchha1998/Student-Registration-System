@@ -1,11 +1,11 @@
 package com.masai.Exception;
 
-public class StudentException {
+public class StudentException extends Exception {
 
 public StudentException(){};
 	
 	public StudentException(String message) {
-		super();
+		super(message);
 	}
 
 }

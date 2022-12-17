@@ -1,23 +1,20 @@
 package com.masai.Model;
 
-public class Course {
-	
+public class CoursesDTO {
+
+
 	private int cid;
 	private String cname;
-	private int fee;
+	private int seats;
 	
-	public Course() {}
-	
-	
+	public CoursesDTO() {}
 
-	public Course(int cid, String cname, int fee) {
+	public CoursesDTO(int cid,String cname, int seats) {
 		super();
 		this.cid = cid;
 		this.cname = cname;
-		this.fee = fee;
+		this.seats = seats;
 	}
-
-
 
 	public int getCid() {
 		return cid;
@@ -35,21 +32,20 @@ public class Course {
 		this.cname = cname;
 	}
 
-	public int getFee() {
-		return fee;
+	public int getSeats() {
+		return seats;
 	}
 
-	public void setFee(int fee) {
-		this.fee = fee;
+	public void setSeats(int seats) {
+		this.seats = seats;
 	}
-
-
-
 
 	@Override
 	public String toString() {
-		return "Course id : "+cid+"\nCourse name : "+cname+"\nCourse fee : "+fee;
-	}
+		return "Course ID : "+this.cid+"\nCourse Name : "+this.cname+"\nTotal Seats Available : "+this.seats;
+	};
+	
+	
 	
 	
 
