@@ -28,19 +28,19 @@ public class Main {
 			StudentMenu student = new StudentMenu();
 			
 			switch(option){
-				case 0 : menu();
+				case 0 : Running();
 					break;
 				case 2 : student.register();
-				System.out.println("----------------------------------------");
+				System.out.println("============================================");
 						studentAuth();
 					break;
-				case 1 : int check = student.login();
-				System.out.println("----------------------------------------");
-					if(check != 0) studentActivity(check);
+				case 1 : int Find = student.login();
+				System.out.println("=============================================");
+					if(Find != 0) studentActivity(Find);
 					else studentAuth();
 					break;
 				case 3 : student.showAllCourse();
-				System.out.println("----------------------------------------");
+				System.out.println("=============================================");
 				studentAuth();
 					break;
 				case 99 :
@@ -55,20 +55,20 @@ public class Main {
 		}catch(Exception e) {
 			
 			System.out.println(ConsoleColors.CYAN_BOLD+"Invalid Selection"+ConsoleColors.BANANA_YELLOW_BACKGROUND);
-			System.out.println("----------------------------------------");
-			menu();
+			System.out.println("=====================================================");
+			Running();
 		}
 
 	}
 	
 	public static void studentActivity(int roll) {
-		
-		System.out.println("PLEASE SELECT FROM THE FOLLOWING OPTIONS ");
-		System.out.println("1. Update Details ");
+		System.out.println("===========================================================================================");
+		System.out.println(ConsoleColors.ANSI_PURPLE+ "|  PLEASE SELECT FROM THE FOLLOWING OPTIONS  |"+ConsoleColors.LIGHT_BLUE);
+		System.out.println(ConsoleColors.CYAN_BOLD+   "|  1. Update Details                         |"+ConsoleColors.ANSI_YELLOW);
 		System.out.println("\n\n");
-		System.out.println("0. Go Back");
-		System.out.println("99. Exit the Application");
-		
+		System.out.println(ConsoleColors.ANSI_PURPLE+"|0. Go Back |"+ConsoleColors.BANANA_YELLOW);
+		System.out.println(ConsoleColors.ANSI_PURPLE+"|99. Exit the Application |"+ConsoleColors.BANANA_YELLOW_BACKGROUND);
+		System.out.println("===========================================================================================");
 		try {
 		
 			String opt = sc.next();
@@ -94,7 +94,7 @@ public class Main {
 		}catch(Exception e) {
 			System.out.println("Invalid Selection");
 			System.out.println("----------------------------------------");
-			menu();
+			Running();
 		}
 	}
 	
@@ -107,17 +107,17 @@ public class Main {
 		System.out.println("0. Go Back");
 		System.out.println("99. Exit The Application");
 		
-		AdminMenu am = new AdminMenu();
+		AdminMenu adminMenu = new AdminMenu();
 		
 		try {
 			int option = sc.nextInt();
 			switch(option) {
-			case 0: menu();
+			case 0: Running();
 				break;
-			case 1: am.register();
+			case 1: adminMenu.register();
 				adminAuth();
 				break;
-			case 2: int check = am.login();
+			case 2: int check = adminMenu.login();
 				if(check == 1) adminActivity();
 				else adminAuth();
 				break;
@@ -139,21 +139,21 @@ public class Main {
 	public static void adminActivity() {
 		
 		System.out.println("PLEASE SELECT FROM THE FOLLOWING OPTIONS ");
-		
-		System.out.println("1. Add new Course");
-		System.out.println("2. Update Fees of Course");
-		System.out.println(ConsoleColors.ANSI_BLUE+"3. Delete Course");
-		System.out.println("4. Search Course");
-		System.out.println("5. Create Batch");
-		System.out.println("6. Add Student in Batch");
-		System.out.println("7. Update Seats in Batch");
-		System.out.println("8. View Student in Batch");
-		System.out.println("9. View All Student List");
-		System.out.println("10. View All Course List");
-		System.out.println("\n\n");
-		System.out.println("0. Go Back");
-		System.out.println("99. Exit The Application");
-		
+		System.out.println("|================================================================================|");
+		System.out.println(ConsoleColors.BLUE_ITALIC+  "| 1. Add new Course                                  |");
+		System.out.println(ConsoleColors.ANSI_PURPLE+  "| 2. Update Fees of Course                           |");
+		System.out.println(ConsoleColors.ANSI_BLUE+    "| 3. Delete Course                                   |");
+		System.out.println(ConsoleColors.ANSI_GREEN+   "| 4. Search Course                                   |");
+		System.out.println(ConsoleColors.BLUE_ITALIC+  "| 5. Create Batch                                    |");
+		System.out.println(ConsoleColors.BROWN+        "| 6. Add Student in Batch                            |");
+		System.out.println(ConsoleColors.BLUE+         "| 7. Update Seats in Batch                           |");
+		System.out.println(ConsoleColors.BROWN+        "| 8. View Student in Batch                           |");
+		System.out.println(ConsoleColors.PURPLE+       "| 9. View All Student List                           |");
+		System.out.println(ConsoleColors.BROWN+        "| 10. View All Course List                           |");
+		System.out.println("\n\n"                                                                           );
+		System.out.println( ConsoleColors.ANSI_GREEN+ "| 0. Go Back                                          |");
+		System.out.println(ConsoleColors.ANSI_BLUE+   "| 99. Exit The Application                            |");
+		System.out.println("|================================================================================|");
 		AdminMenu am = new AdminMenu();
 		try {
 			
@@ -195,7 +195,7 @@ public class Main {
 		
 	}
 	
-	public static void menu() {
+	public static void Running() {
 		
 		System.out.println("PLEASE SELECT FROM THE OPTIONS ");
 		System.out.println("1. Student ");
@@ -219,14 +219,14 @@ public class Main {
 				System.out.println("Thank You for using Application.");
 			}else {
 				System.out.println("Invalid Selection : Please try again");
-				menu();
+				Running();
 			}
 		
 		
 		}catch(Exception e) {
 			System.out.println("Invalid Entry ");
 			System.out.println("----------------------------------------");
-			menu();
+			Running();
 		}
 		
 	}
@@ -237,7 +237,7 @@ public class Main {
 		System.out.println("WELCOME TO STUDENT REGISTRATION PORTAL ");
 		System.out.println("--------------------------------------");
 		
-		menu();
+		Running();
 	}
 
 
