@@ -15,22 +15,22 @@ public class AdminLogin {
 		
 		Scanner sc= new Scanner(System.in);
 		
-		System.out.println("Enter name");
+		System.out.println("Enter Name");
 		String name=sc.next();
 		
-		System.out.println("Enter pass");
+		System.out.println("Enter Password");
 		String pass=sc.next();
 		
 		
 		
 		
-		AdministratorDao a= new AdministratorDaoImpl();
+		AdministratorDao ad= new AdministratorDaoImpl();
 	
 		try {
 			
-			a.adminLogin(name, pass);
+			ad.adminLogin(name, pass);
 			
-	System.out.println("Login Succesfull");
+	System.out.println("Login Succesfully");
 			return true;
 			
 		} catch (AdminException e) {

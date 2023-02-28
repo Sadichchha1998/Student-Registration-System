@@ -13,20 +13,20 @@ public class InsertStudent {
 		
 		Scanner sc= new Scanner(System.in);
 		
-		System.out.println("Enter course id");
+		System.out.println("Enter Course Id  :");
 		String cname= sc.next();
-		System.out.println("Enter batch id");
+		System.out.println("Enter Batch Id : ");
 		int bname=sc.nextInt();
-		System.out.println("Enter student roll");
+		System.out.println("Enter Student Roll Number ");
 		int roll= sc.nextInt();
 		
 		
 		
-		AdministratorDao adm= new AdministratorDaoImpl();
+		AdministratorDao admin= new AdministratorDaoImpl();
 		
 		try {
-		String sm=	adm.allocateStudent(roll, bname, roll);
-			System.out.println(sm);
+		String smt=	admin.allocateStudent(roll, bname, roll);
+			System.out.println(smt);
 		} catch (AdminException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

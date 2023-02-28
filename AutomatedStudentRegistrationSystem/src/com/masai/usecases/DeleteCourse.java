@@ -13,16 +13,16 @@ public class DeleteCourse {
 		
 		Scanner sc= new Scanner(System.in);
 			
-			System.out.println(ConsoleColors.ANSI_RED+"Enter course id to delete Course"+ConsoleColors.RESET);
+			System.out.println(ConsoleColors.ANSI_RED+"Enter course id to delete Course"+ConsoleColors.ANSI_BLUE);
 			int cid= sc.nextInt();
 			
 		
 			
-			AdministratorDao adm= new AdministratorDaoImpl();
+			AdministratorDao admin= new AdministratorDaoImpl();
 			
 			try {
-				String res=adm.deleteCourse(cid);
-				System.out.println(res);
+				String reslt=admin.deleteCourse(cid);
+				System.out.println(reslt);
 				
 				
 			} catch (AdminException e) {

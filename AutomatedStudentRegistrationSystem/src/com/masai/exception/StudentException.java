@@ -1,6 +1,6 @@
 package com.masai.exception;
 
-public class StudentException extends Exception{
+public class StudentException extends RuntimeException{
 
 	public StudentException() {
 		// TODO Auto-generated constructor stub

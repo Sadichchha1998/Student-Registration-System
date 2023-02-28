@@ -19,11 +19,11 @@ public class StudentLogin {
 		System.out.println("Enter pass");
 		String pass= sc.next();
 		
-		StudentDao d= new StudentDaoImpl();
+		StudentDao dtm= new StudentDaoImpl();
 		
 		try {
 			
-			System.out.println(d.login(email, pass));
+			System.out.println(dtm.login(email, pass));
 			return true;
 		} catch (StudentException e) {
 			// TODO Auto-generated catch block

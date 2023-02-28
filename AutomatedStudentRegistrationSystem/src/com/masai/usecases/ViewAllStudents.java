@@ -15,8 +15,8 @@ public class ViewAllStudents {
 	AdministratorDao adm= new AdministratorDaoImpl();
 		
 		try {
-		List<StudentDTO> ss=	adm.viewAllStudent_Batch();
-		ss.forEach(s->System.out.println(s));	
+		List<StudentDTO> sv=	adm.viewAllStudent_Batch();
+		sv.forEach(s->System.out.println(s));	
 		
 		} catch (AdminException e) {
 			// TODO Auto-generated catch block

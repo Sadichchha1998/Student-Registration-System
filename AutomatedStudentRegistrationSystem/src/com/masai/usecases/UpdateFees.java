@@ -19,11 +19,11 @@ public class UpdateFees {
 		int fee=sc.nextInt();
 		
 		
-		AdministratorDao adm= new AdministratorDaoImpl();
+		AdministratorDao admin= new AdministratorDaoImpl();
 		
 		try {
-			String res=adm.updateFee(cid, fee);
-			System.out.println(res);
+			String reslt=admin.updateFee(cid, fee);
+			System.out.println(reslt);
 			
 			
 		} catch (AdminException e) {

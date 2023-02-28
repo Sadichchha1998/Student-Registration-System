@@ -19,7 +19,7 @@ public class AdminFlow {
 
 	public static void main(String[] args) throws InterruptedException {
 		System.out.println(ConsoleColors.BLACK_BOLD);
-		System.out.println("Welcome to Admin Panel");
+		System.out.println("Welcome into Admin Panel");
 		System.out.println(ConsoleColors.RESET);
 		System.out.println(ConsoleColors.ANSI_CYAN);
 		 while(true) {
@@ -34,16 +34,16 @@ public class AdminFlow {
 		 Thread.sleep(100);
 		System.out.println(" ==================================");
 		
-		System.out.println(ConsoleColors.RESET);
+		System.out.println(ConsoleColors.BLUE);
 	 Scanner sc= new Scanner(System.in);
 	 
 	 int res= sc.nextInt();
 	
 	 if(res==1) {
 	
-			boolean b1=	AdminRegistration.main(null);
+			boolean bl=	AdminRegistration.main(null);
 		
-			if(b1) {
+			if(bl) {
 				System.out.println("Registration Succesful");
 				System.out.println("Please log in");
 				 AdminFlow.main(null);
@@ -63,7 +63,7 @@ public class AdminFlow {
 			 
 			 break;
 		 }else {
-			 System.out.println("Please provide valid Information");
+			 System.out.println("Please provide valid Information for the login ");
 			 AdminFlow.main(null);
 		 }
 		 
@@ -96,59 +96,59 @@ public class AdminFlow {
 			 Thread.sleep(100);
 			System.out.println(" ===========================================");
 			 Thread.sleep(100);
-			System.out.println("| Enter 1 to Add Course                     |");
+			System.out.println("|1 : For  Add Course                     |");
 			 Thread.sleep(100);
-			System.out.println("| Enter 2 to Delete Course                  |");
+			System.out.println("| 2 : For  Delete Course                  |");
 			 Thread.sleep(100);
-			System.out.println("| Enter 3 to Update fee of a Course         |");
+			System.out.println("|3: Fo Update fee of a Course         |");
 			 Thread.sleep(100);
-			System.out.println("| Enter 4 to Update Seats in a Batch        |");
+			System.out.println("|4 :For Update Seats in a Batch        |");
 			 Thread.sleep(100);
-			System.out.println("| Enter 5 to Admit student in a course      |");
+			System.out.println("| 5: For Admit student in a course      |");
 			 Thread.sleep(100);
-			System.out.println("| Enter 6 to create Batch                   |");
+			System.out.println("| 6: For create Batch                   |");
 			 Thread.sleep(100);
-			System.out.println("| Enter 7 to Search Information of a Course |");
+			System.out.println("| 7 : For to Search Information of a Course |");
 			 Thread.sleep(100);
-			System.out.println("| Enter 8 to View all Details of all Batch  |");
+			System.out.println("| 8: For  View all Details of all Batch  |");
 			 Thread.sleep(100);
-			System.out.println("| Enter 9 to Exit                           |");
+			System.out.println("|9: For to Exit                           |");
 			 Thread.sleep(100);
-			System.out.println("| Enter 10 to Back                          |");
+			System.out.println("| 10: For to Back                          |");
 			 Thread.sleep(100);
 		    System.out.println(" ============================================");
 		    System.out.println(ConsoleColors.RESET);
-		    int op= sc.nextInt();
+		    int opt= sc.nextInt();
 		    
-		    if(op==1) {
+		    if(opt==1) {
 		    	AddCourse.main(null);
 		    }
-		    else if(op==2) {
+		    else if(opt==2) {
             	DeleteCourse.main(null);
 		    }
-		    else   if(op==3) {
+		    else   if(opt==3) {
 	                 UpdateFees.main(null);
               }
-		    else  if(op==4) {
+		    else  if(opt==4) {
 	UpdateSeats.main(null);
                                }
-		    else   if(op==5) {
+		    else   if(opt==5) {
 	InsertStudent.main(null);
                           } 
-		    else   if(op==6) {
+		    else   if(opt==6) {
 	CreateBatch_ForCourse.main(null);
                           }
-		    else  if(op==7) {
+		    else  if(opt==7) {
 	SearchInformationCourse.main(null);
                           }
-		    else  if(op==8) {
+		    else  if(opt==8) {
 	AllDetailsCourseAndSeats.main(null);
                             }
-		    else  if(op==9) {
+		    else  if(opt==9) {
 		    	System.out.println("Thank You!");
 	return;
                             }
-		    else if(op==10) {
+		    else if(opt==10) {
 		    	AdminFlow.main(null);
 		    }else {
 		    	System.out.println("Please Enetr valid Option");

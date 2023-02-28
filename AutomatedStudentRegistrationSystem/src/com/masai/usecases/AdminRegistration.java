@@ -20,14 +20,14 @@ public class AdminRegistration {
 	System.out.println("Enter pass for admin login ");
 	String pass=sc.next();
 	
-	Admin adm= new Admin();
-	adm.setName(name);
-	adm.setPass(pass);
+	Admin admin= new Admin();
+	admin.setName(name);
+	admin.setPass(pass);
 	
 	
-	AdministratorDao ad= new AdministratorDaoImpl();
+	AdministratorDao adt= new AdministratorDaoImpl();
 	try {
-		String res=ad.adminRegistration(adm);
+		String res=adt.adminRegistration(admin);
 		return true;
 		
 	} catch (AdminException e) {

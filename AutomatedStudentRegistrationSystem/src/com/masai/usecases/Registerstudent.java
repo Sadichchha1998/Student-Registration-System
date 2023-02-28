@@ -15,27 +15,27 @@ public static boolean main(String[] args) {
 		
 		
 		
-		System.out.println("Enter email");
+		System.out.println("Enter Email :");
 		String email= sc.next();
 		
-		System.out.println("Enter password");
+		System.out.println("Enter Password : ");
 		String pass= sc.next();
 		
-		System.out.println("Enter Student name");
+		System.out.println("Enter Student Name : ");
 		String name= sc.next();
 		
 		
 		
 		
-		Student s= new Student();
-		s.setEmail(email);
-        s.setName(name);
-		s.setPassword(pass);
+		Student std= new Student();
+		std.setEmail(email);
+        std.setName(name);
+		std.setPassword(pass);
 		
 		StudentDao st= new StudentDaoImpl();
 		
 		try {
-			String res=st.registration(s);
+			String res=st.registration(std);
 			
 			return true;
 			

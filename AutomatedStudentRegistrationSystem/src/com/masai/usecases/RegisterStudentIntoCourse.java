@@ -15,29 +15,29 @@ public class RegisterStudentIntoCourse {
 		
 		
 		
-		System.out.println("Enter email");
+		System.out.println("Enter Email : ");
 		String email= sc.next();
 		
-		System.out.println("Enter password");
+		System.out.println("Enter Password : ");
 		String pass= sc.next();
 		
-		System.out.println("Enter Student name");
+		System.out.println("Enter Student Name : ");
 		String name= sc.next();
 		
 		
 		System.out.println("Enter course id in which You want to take admission");
 		int cid= sc.nextInt();
 		
-		Student st= new Student();
-		st.setEmail(email);
-        st.setName(name);
-		st.setPassword(pass);
+		Student std= new Student();
+		std.setEmail(email);
+        std.setName(name);
+		std.setPassword(pass);
 		
-		StudentDao std= new StudentDaoImpl();
+		StudentDao stdm= new StudentDaoImpl();
 		
 		try {
-			String res=std.studentRegistration(st,cid);
-			System.out.println(res);
+			String reslt=stdm.studentRegistration(std,cid);
+			System.out.println(reslt);
 			return true;
 			
 		} catch (StudentException e) {

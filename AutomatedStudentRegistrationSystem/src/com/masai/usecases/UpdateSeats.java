@@ -23,8 +23,8 @@ public class UpdateSeats {
 	AdministratorDao adm= new AdministratorDaoImpl();
 	
 	try {
-	String s=	adm.updateSeatsOfBatch(bid, seats);
-		System.out.println(s);
+	String str=	adm.updateSeatsOfBatch(bid, seats);
+		System.out.println(str);
 	} catch (AdminException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

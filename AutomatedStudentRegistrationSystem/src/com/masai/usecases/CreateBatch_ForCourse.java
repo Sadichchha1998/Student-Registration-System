@@ -14,21 +14,21 @@ public static void main(String[] args) {
 		
 		Scanner sc= new Scanner(System.in);
 		
-		System.out.println("Enter Batch name ");
+		System.out.println("Enter Batch name : ");
 		String cname= sc.next();
-		System.out.println("Enter Batch duration");
+		System.out.println("Enter Batch duration :");
 		int duration=sc.nextInt();
 	
-		System.out.println("Enter Batch seats");
+		System.out.println("Enter Batch seats : ");
 		int seats= sc.nextInt();
 		
 		System.out.println("Enter course id for which you want to create batch");
 		int c_Id= sc.nextInt();
 		
-		Batch bt= new Batch();
-		bt.setBname(cname);
-		bt.setDuration(duration);
-		bt.setSeats(seats);
+		Batch btch= new Batch();
+		btch.setBname(cname);
+		btch.setDuration(duration);
+		btch.setSeats(seats);
 		
 			
 			
@@ -39,7 +39,7 @@ public static void main(String[] args) {
 		
 			try {
 				
-				System.out.println(adm.createBatch(bt, c_Id));
+				System.out.println(adm.createBatch(btch, c_Id));
 			} catch (AdminException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

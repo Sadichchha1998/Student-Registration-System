@@ -15,9 +15,88 @@ import com.masai.utility.utility;
 public class StudentDaoImpl implements StudentDao {
 
 	@Override
+	public String updateDetails(int roll, String field, String newData) throws StudentException {
+
+	String msg="Student Details  Not Updated ...: ";
+		
+	try (Connection conn=utility.provideconnetion()){
+		
+		 
+	 PreparedStatement ps=	conn.prepareStatement("UPDATE students set "+field+"=? WHERE sroll = ?");
+		
+	ps.setString(1, newData);
+		ps.setInt(2, roll);
+		
+	int rs=	ps.executeUpdate();
+	
+	if(rs>0) {
+		msg="Updated Succesfully...:";
+	}
+	} catch (SQLException e) {
+		// TODO: handle exception
+	
+		throw new StudentException(e.getMessage());
+		
+	}
+	
+	return msg;
+	}
+
+	
+		
+
+
+	@Override
+	public String registration(Student s) throws StudentException {
+		
+
+		String msg="Student Not Registered";
+		
+		try (Connection conn=utility.provideconnetion()){
+			
+			PreparedStatement ps=	conn.prepareStatement("insert into students(semail,spassword,sname) values(?,?,?)");
+				
+			ps.setString(1, s.getEmail());
+			ps.setString(2, s.getPassword());
+			ps.setString(3, s.getName());
+			
+			
+	       int	x=	ps.executeUpdate();
+				
+	       if(x>0) {
+
+	    	 
+	 	    			  msg="Registration Succesful";
+	 	    		  }else {
+	 	    			  msg="Some Registration eroor occure";
+	 	    		  }
+	    		    	
+	    		    
+	    		  
+				
+			} catch (SQLException e) {
+				// TODO: handle exception
+				
+				throw new StudentException(e.getMessage());
+		
+			}
+			
+			
+		
+				 
+			 
+			 
+		
+		return msg;
+		
+	}
+
+
+	
+	@Override
 	public String studentRegistration(Student s, int cid) throws StudentException {
 		
-		String msz="Student Not Registered";
+		String msg="Student Not Registered  : ";
 		
 		try (Connection conn=utility.provideconnetion()){
 			
@@ -58,9 +137,9 @@ public class StudentDaoImpl implements StudentDao {
 	 	    		  int done= ps3.executeUpdate();
 	
 	 	    		  if(done>0) {
-	 	    			  msz="Registration Succesful";
+	 	    			  msg="Registration Succesful";
 	 	    		  }else {
-	 	    			  msz="Some Registration eroor occure";
+	 	    			  msg="Some Registration eroor occure";
 	 	    		  }
 	    		    	
 	    		    }
@@ -68,7 +147,7 @@ public class StudentDaoImpl implements StudentDao {
 	    		   
 	    		   
 	    	   }else {
-	    		   msz="Course not found with this id";
+	    		   msg="Course not found with this id";
 	    	   }
 	    	   
 	       }
@@ -92,74 +171,10 @@ public class StudentDaoImpl implements StudentDao {
 			 
 			 
 		
-		return msz;
+		return msg;
 	}
 
-	@Override
-	public String updateDetails(int roll, String field, String newData) throws StudentException {
 
-	String msz="Student Details  Not Updated";
-		
-	try (Connection conn=utility.provideconnetion()){
-		
-		 
-	 PreparedStatement ps=	conn.prepareStatement("UPDATE students set "+field+"=? WHERE sroll = ?");
-		
-	ps.setString(1, newData);
-		ps.setInt(2, roll);
-		
-	int rs=	ps.executeUpdate();
-	
-	if(rs>0) {
-		msz="Updated Succesfully";
-	}
-	} catch (SQLException e) {
-		// TODO: handle exception
-	
-		throw new StudentException(e.getMessage());
-		
-	}
-	
-	return msz;
-	}
-
-	
-	
-	@Override
-	public Student login(String username, String password) throws StudentException {
-
-		Student s= new Student();
-
-		try (Connection conn=utility.provideconnetion()){
-			
-		PreparedStatement ps=	conn.prepareStatement("Select * from students where semail=? and spassword =?");
-		ps.setString(1,username);
-		ps.setString(2, password);
-		
-		ResultSet rs=	ps.executeQuery();
-			
-	if(rs.next()) {
-		
-	 s= new Student(rs.getInt("sroll"),rs.getString("sname"),rs.getString("semail"),null);
-		
-		
-	}else {
-		throw new StudentException("Invalid Email or password");
-	}
-			
-			
-		} catch (SQLException e) {
-			// TODO: handle exception
-		throw new StudentException(e.getMessage());
-		}
-		
-		
-		return s;
-		
-	}
-
-	
-	
 	@Override
 	public List<InformationCourseDTO> detailsAllCourse() throws StudentException {
 		
@@ -227,52 +242,39 @@ PreparedStatement ps=	conn.prepareStatement("select * from courses");
 		return list;
 	}
 
+	
 	@Override
-	public String registration(Student s) throws StudentException {
-		
+	public Student login(String username, String password) throws StudentException {
 
-		String msz="Student Not Registered";
-		
+		Student std= new Student();
+
 		try (Connection conn=utility.provideconnetion()){
 			
-			PreparedStatement ps=	conn.prepareStatement("insert into students(semail,spassword,sname) values(?,?,?)");
-				
-			ps.setString(1, s.getEmail());
-			ps.setString(2, s.getPassword());
-			ps.setString(3, s.getName());
-			
-			
-	       int	x=	ps.executeUpdate();
-				
-	       if(x>0) {
-
-	    	 
-	 	    			  msz="Registration Succesful";
-	 	    		  }else {
-	 	    			  msz="Some Registration eroor occure";
-	 	    		  }
-	    		    	
-	    		    
-	    		  
-				
-			} catch (SQLException e) {
-				// TODO: handle exception
-				
-				throw new StudentException(e.getMessage());
+		PreparedStatement ps=	conn.prepareStatement("Select * from students where semail=? and spassword =?");
+		ps.setString(1,username);
+		ps.setString(2, password);
 		
-			}
+		ResultSet rs=	ps.executeQuery();
+			
+	if(rs.next()) {
+		
+	 std= new Student(rs.getInt("sroll"),rs.getString("sname"),rs.getString("semail"),null);
+		
+		
+	}else {
+		throw new StudentException("Invalid Email or password");
+	}
 			
 			
+		} catch (SQLException e) {
+			// TODO: handle exception
+		throw new StudentException(e.getMessage());
+		}
 		
-				 
-			 
-			 
 		
-		return msz;
+		return std;
 		
 	}
 
-
-	
 	
 }

@@ -13,22 +13,22 @@ public class AddCourse {
 		
 		Scanner sc= new Scanner(System.in);
 		
-		System.out.println("Enter course name to add ");
+		System.out.println("Enter course name : ");
 		String cname= sc.next();
-		System.out.println("Enter course fee to add ");
+		System.out.println("Enter course fee : ");
 		int fee=sc.nextInt();
-		System.out.println("Enter course seats to add");
+		System.out.println("Enter course seats :");
 		int seats= sc.nextInt();
 		
-		Course c= new Course();
-		c.setC_name(cname);
-		c.setFee(fee);
-		c.setSeats(seats);
+		Course cr= new Course();
+		cr.setC_name(cname);
+		cr.setFee(fee);
+		cr.setSeats(seats);
 		
 		AdministratorDao adm= new AdministratorDaoImpl();
 		try {
 		
-			String res=adm.addCourse(c);
+			String res=adm.addCourse(cr);
 			System.out.println(res);
 		} catch (AdminException e) {
 			// TODO Auto-generated catch block

@@ -23,10 +23,10 @@ public class UpdateStudentDetails {
 		int roll=sc.nextInt();
 		
 		
-		StudentDao s= new StudentDaoImpl();
+		StudentDao std= new StudentDaoImpl();
 		try {
 			
-			System.out.println(s.updateDetails(roll, field, newdata));
+			System.out.println(std.updateDetails(roll, field, newdata));
 		} catch (StudentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -19,13 +19,13 @@ public static void main(String[] args) {
 			
 		
 			
-			AdministratorDao adm= new AdministratorDaoImpl();
+			AdministratorDao admin= new AdministratorDaoImpl();
 			
 
 			try {
-			List<InformationCourseDTO> d=	adm.searchInformationOfCourse(cid);
+			List<InformationCourseDTO> d=	admin.searchInformationOfCourse(cid);
 				
-			d.forEach(s->System.out.println(s));
+			d.forEach(st->System.out.println(st));
 				
 			} catch (AdminException e) {
 				// TODO Auto-generated catch block

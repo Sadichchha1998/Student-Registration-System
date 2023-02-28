@@ -11,14 +11,14 @@ public class AllDetailsCourseAndSeats {
 
 	
 	public static void main(String[] args) {
-		System.out.println("Get all details present ");
+		System.out.println("Get all details avaliable here ");
 		
-		StudentDao s= new StudentDaoImpl();
+		StudentDao sdt= new StudentDaoImpl();
 		
 		try {
-		List<InformationCourseDTO> lm=	s.detailsAllCourse();
+		List<InformationCourseDTO> lmt=	sdt.detailsAllCourse();
 		
-		lm.forEach(ss->System.out.println(ss));
+		lmt.forEach(s->System.out.println(s));
 		} catch (StudentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
