@@ -1,141 +1,45 @@
-# rhetorical-actor-7344
- Confirmation of the admission of the student to the academic programme after submission of a completed admission form with necessary supporting
+Project :
+<br>
+Confirmation of the admission of the student to the academic programme after submission of a completed admission form with necessary supporting
 
 
 
-1. Student table 
-=================
-CREATE TABLE Student(
-roll int PRIMARY KEY auto_increment,
-name varchar(16) NOT NULL,
-gender varchar(1)  NOT NULL,
-email varchar(24)  NOT NULL,
-password varchar(16)  NOT NULL
-);
 
+![image](https://user-images.githubusercontent.com/110052591/221780753-78edb257-bb22-417f-a556-bd5e903b8039.png)
 
-2.Course table
-================
-CREATE TABLE Course(
-c_id int PRIMARY KEY auto_increment,
-c_name varchar (23)NOT NULL UNIQUE,
-fee int NOT NULL,
-Seats int NOT NULL
-);
+Student table:
+<br>
+create table students ( sRoll int primary key auto_increment, sEmail varchar(25) unique not null, sPassword varchar(15) NOT NULL, sName varchar(20) NOT NULL );
+<br>
 
-insert into course values(
-5,'HTML',190,10);
+Admin table:
+<br>
+create table admin ( adminId int primary key auto_increment, a_name varchar(25) unique not null, a_Pass varchar(15) NOT NULL);
+<br>
 
-insert into course values(
-2,'JAVA111',1260,14);
+Course table:
+<br>
+create table courses ( c_id int primary key auto_increment, c_name varchar(25) unique not null, fee int NOT NULL, seats int NOT NULL );
+<br>
 
+Student_Course table:
+<br>
+create table student_course ( roll int, course int, foreign key (roll) references students(sRoll) on delete set null, foreign key (course) references courses(c_id) on delete set null );
 
-insert into course values(
-3,'JA111',1890,17);
+<br>
+Batch table:
+<br>
+create table batch ( bId int primary key auto_increment, bname varchar(25), duration int, cId int, seats int, foreign key (cId) references courses(c_id) ON DELETE Cascade );
+<br>
 
-
-3. Batch table 
-================
-CREATE TABLE Batch(
-bid int primary key, 
-bname varchar(24),
-duration varchar(12),
-c_id int,
-Seats int NOT NULL
-);
-FOREIGN KEY (c_id) REFERENCES Course(c_id)
-
-4. Student_batch table
-=======================
-CREATE TABLE Student_Batch(
-roll int,
-FOREIGN KEY (roll) REFERENCES Student(roll),
-cid int,
-bid int,
-FOREIGN KEY (bid) REFERENCES Batch(bid));
-
-FOREIGN KEY (cid) REFERENCES Student_Course(cid),
-
-5.Student_course table 
-======================== 
-CREATE TABLE  Student_course(
-roll int,
-FOREIGN KEY (roll) REFERENCES Student(roll),
-cid int
-);
-
-FOREIGN KEY (cid) REFERENCES Course(c_id)
-
-6.Admin table 
-=============
-CREATE TABLE Admin(
-admin_id int PRIMARY KEY auto_increment,
-a_name varchar(20),
-a_user varchar(27),
-a_pass varchar(24)
-);
-
-CREATE TABLE Eployee(
-eid int PRIMARY KEY auto_increment,
-String name varchar(20),
-String adress varchar(20),
-salary int
-);
-=================================================
-CREATE TABLE Admin
-(
-adminid int PRIMARY KEY auto_increment,
-a_name varchar(16) NOT NULL,
-a_user varchar(24) NOT NULL UNIQUE,
-a_pass varchar(24) NOT NULL
-);
-
----------------------------------
-
-CREATE TABLE Batch
-(
-batchid int PRIMARY KEY,
-batchname varchar(12),
-courseid int,
-seats int NOT NULL,
-FOREIGN KEY (courseid) references Course(c_id)
-);
-
-----------------------------------
-
-CREATE TABLE Course(
-c_id int PRIMARY KEY auto_increment,
-c_name varchar(24) NOT NULL UNIQUE,
-fee int NOT NULL
-);
-
-----------------------------------
-
-CREATE TABLE Student(
-roll int PRIMARY KEY auto_increment,
-name varchar(16) NOT NULL,
-gender varchar(1) NOT NULL,
-email varchar(24) NOT NULL UNIQUE,
-password varchar(16) NOT NULL
-);
-
---------------------------------
-
-CREATE TABLE student_course(
-roll int,
-cid int,
-FOREIGN KEY (cid) references Course(c_id),
-FOREIGN KEY (roll) references Student(roll)
-);
-
-
-CREATE TABLE batch_student(
-Studentroll int,
-courseid int,
-batchid int,
-PRIMARY KEY (Studentroll,courseid),
-FOREIGN KEY (batchid) references Batch(batchid),
-FOREIGN KEY (courseid) references Course(c_id),
-FOREIGN KEY (studentroll) references Student(roll)
-);
-===================================================================
+student_batch table:
+<br>
+create table student_batch ( roll int, course int, bid int, foreign key (roll) references students(sRoll) ON DELETE CASCADE, foreign key (course) references courses(c_id) ON DELETE CASCADE, foreign key (bid) references batch(bId) ON DELETE CASCADE );
+<br>
+insert into students(semail,spassword,sname) values('Sad@gmail.com','Sad','Sadu');
+<br>
+insert into courses(c_name,fee,seats) values('DSa',5000,0);
+<br>
+insert into admin(a_name,a_Pass) values('Sadichchha','Vikrant');
+<br>
+insert into batch(bname,duration,cId,seats) values('Java',5,1,5090);
