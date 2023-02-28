@@ -1,11 +1,14 @@
-package com.masai.Exception;
+package com.masai.exception;
 
-public class StudentException extends Exception {
+public class StudentException extends Exception{
 
-public StudentException(){};
-	
-	public StudentException(String message) {
-		super(message);
+	public StudentException() {
+		// TODO Auto-generated constructor stub
 	}
-
+	
+	
+	public StudentException(String msz) {
+		// TODO Auto-generated constructor stub
+		super(msz);
+	}
 }

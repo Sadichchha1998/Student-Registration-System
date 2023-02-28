@@ -1,79 +1,51 @@
-package com.masai.Model;
+package com.masai.model;
 
 public class StudentDTO {
-	
 
-	private int roll;
-	private String sName;
-	private int cid;
-	private String cName;
-	private int bid;
-	private String bName;
-	
-	public StudentDTO() {}
-
-	public StudentDTO(int roll, String sName, int cid, String cName, int bid, String bName) {
+	private int sroll;
+	private String name;
+	private String cname;
+	private String bname;
+	public StudentDTO(int sroll, String name, String cname, String bname) {
 		super();
-		this.roll = roll;
-		this.sName = sName;
-		this.cid = cid;
-		this.cName = cName;
-		this.bid = bid;
-		this.bName = bName;
+		this.sroll = sroll;
+		this.name = name;
+		this.cname = cname;
+		this.bname = bname;
 	}
-
-	public int getRoll() {
-		return roll;
+	public StudentDTO() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-
-	public void setRoll(int roll) {
-		this.roll = roll;
+	public int getSroll() {
+		return sroll;
 	}
-
-	public String getsName() {
-		return sName;
+	public void setSroll(int sroll) {
+		this.sroll = sroll;
 	}
-
-	public void setsName(String sName) {
-		this.sName = sName;
+	public String getName() {
+		return name;
 	}
-
-	public int getCid() {
-		return cid;
+	public void setName(String name) {
+		this.name = name;
 	}
-
-	public void setCid(int cid) {
-		this.cid = cid;
+	public String getCname() {
+		return cname;
 	}
-
-	public String getcName() {
-		return cName;
+	public void setCname(String cname) {
+		this.cname = cname;
 	}
-
-	public void setcName(String cName) {
-		this.cName = cName;
+	public String getBname() {
+		return bname;
 	}
-
-	public int getBid() {
-		return bid;
+	public void setBname(String bname) {
+		this.bname = bname;
 	}
-
-	public void setBid(int bid) {
-		this.bid = bid;
-	}
-
-	public String getbName() {
-		return bName;
-	}
-
-	public void setbName(String bName) {
-		this.bName = bName;
-	}
-
 	@Override
 	public String toString() {
-		return "Student ID : "+this.roll+"\nStudent Name : "+this.sName+"\nCourse ID : "+this.cid+"\nCourse Name : "+this.cName+"\nBatch ID : "+this.bid+"\nBatch Name : "+this.bName ;
+		return "StudentDTO [sroll=" + sroll + ", name=" + name + ", cname=" + cname + ", bname=" + bname + "]";
 	}
+	
 	
 	
 	

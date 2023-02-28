@@ -1,4 +1,4 @@
-package com.masai.Dao;
+package com.masai.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,176 +7,272 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.masai.Exception.StudentException;
-import com.masai.Model.CoursesDTO;
-import com.masai.Model.Student;
-import com.masai.util.DBUtil;
+import com.masai.exception.StudentException;
+import com.masai.model.InformationCourseDTO;
+import com.masai.model.Student;
+import com.masai.utility.utility;
 
-public class StudentDaoImpl implements StudentDao{
+public class StudentDaoImpl implements StudentDao {
 
-
-	
 	@Override
-	public String studentRegistration(Student student, int cid) throws StudentException {
-		// TODO Auto-generated method stub
+	public String studentRegistration(Student s, int cid) throws StudentException {
 		
-		String message = null;
+		String msz="Student Not Registered";
 		
-		try(Connection con = DBUtil.ProvideConnection()){
+		try (Connection conn=utility.provideconnetion()){
 			
-			PreparedStatement ps =  con.prepareStatement("INSERT INTO student(roll,name,gender,email,password) VALUES (?,?,?,?,?)");
+			PreparedStatement ps=	conn.prepareStatement("insert into students(semail,spassword,sname) values(?,?,?)");
+				
+			ps.setString(1, s.getEmail());
+			ps.setString(2, s.getPassword());
+			ps.setString(3, s.getName());
 			
-			ps.setInt(1, student.getRoll());
-			ps.setString(2, student.getName());
-			ps.setString(3, student.getGender());
-			ps.setString(4, student.getEmail());
-			ps.setString(5, student.getPassword());
 			
-			ps.executeUpdate();
-			
-			PreparedStatement ps2 = con.prepareStatement("SELECT * FROM course WHERE c_id = ?");
-			ps2.setInt(1, cid);
-			
-			ResultSet rs = ps2.executeQuery();
-			
-			if(rs.next()) {
+	       int	x=	ps.executeUpdate();
 				
-				String email = student.getEmail();
-				System.out.println(email);
+	       if(x>0) {
+
+	    	   PreparedStatement ps1= conn.prepareStatement("select * from courses where c_id=?");
+
+	    	   ps1.setInt(1, cid);
+	    	   ResultSet rs1= ps1.executeQuery();
+	    	   
+	    	   if(rs1.next()) {
+	    		   
+	    		   
+	    		   PreparedStatement ps2= conn.prepareStatement("select * from students where semail=?");
+	    		   
+	    		   ps2.setString(1, s.getEmail());
+	    		    ResultSet rs3= ps2.executeQuery();
+	    		   
+	    		    if(rs3.next()) {
+	    		   
+
+	 	    		   PreparedStatement ps3= conn.prepareStatement("insert into student_course(roll,course) values(?,?)");
+	 	    		   
+	 	    		   int mm= rs3.getInt("sroll");
+	 	    		   
+	 	    		   ps3.setInt(1,mm);
+	 	    		  ps3.setInt(2,cid);
+	    		    	
+	 	    		  int done= ps3.executeUpdate();
+	
+	 	    		  if(done>0) {
+	 	    			  msz="Registration Succesful";
+	 	    		  }else {
+	 	    			  msz="Some Registration eroor occure";
+	 	    		  }
+	    		    	
+	    		    }
+	    		   
+	    		   
+	    		   
+	    	   }else {
+	    		   msz="Course not found with this id";
+	    	   }
+	    	   
+	       }
+	    	   
+	    	   
+	    	   
+	      
 				
-				PreparedStatement ps3 = con.prepareStatement("SELECT roll FROM student WHERE email = ?");
-				ps3.setString(1, email);
 				
-				ResultSet rs2 = ps3.executeQuery();
-				rs2.next();
-				int roll = rs2.getInt("roll");
 				
-				PreparedStatement ps4 = con.prepareStatement("INSERT INTO student_course VALUES (?,?)");
-				ps4.setInt(1, roll);
-				ps4.setInt(2, cid);
+			} catch (SQLException e) {
+				// TODO: handle exception
 				
-				int res = ps4.executeUpdate();
-				if(res > 0) {
-					message = "Registration successfull";
-				}else {
-					throw new StudentException("Error in Registration");
-				}
-				
-			}else {
-				throw new StudentException("Course ID Error.");
+				throw new StudentException(e.getMessage());
+		
 			}
-
-		}
-		catch(SQLException e) {
-			message = e.getMessage();
-			throw new StudentException(message);
-		}
-
-		return message;
+			
+			
+		
+				 
+			 
+			 
+		
+		return msz;
 	}
 
 	@Override
 	public String updateDetails(int roll, String field, String newData) throws StudentException {
-		// TODO Auto-generated method stub
+
+	String msz="Student Details  Not Updated";
 		
-		String message = null;
+	try (Connection conn=utility.provideconnetion()){
 		
-		try(Connection con = DBUtil.ProvideConnection()){
-			
-			PreparedStatement ps = con.prepareStatement("UPDATE student set "+field+"=? WHERE roll = ?");
-			ps.setString(1, newData); 
-//			ps.setString(2, newData);
-			ps.setInt(2, roll);
-			
-			int res = ps.executeUpdate();
-			
-			if(res > 0) {
-				message = field+" changed to "+newData + " successfully";
-			}else {
-				throw new StudentException("Error Updating ");
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			message = e.getMessage();
-			throw new StudentException(message);
-		}
+		 
+	 PreparedStatement ps=	conn.prepareStatement("UPDATE students set "+field+"=? WHERE sroll = ?");
 		
-		return message;
+	ps.setString(1, newData);
+		ps.setInt(2, roll);
+		
+	int rs=	ps.executeUpdate();
+	
+	if(rs>0) {
+		msz="Updated Succesfully";
 	}
-
-	@Override
-	public List<CoursesDTO> showAllCourseDetails() throws StudentException {
-		// TODO Auto-generated method stub
-		List<CoursesDTO> courses = new ArrayList<>();
+	} catch (SQLException e) {
+		// TODO: handle exception
+	
+		throw new StudentException(e.getMessage());
 		
-		try(Connection con = DBUtil.ProvideConnection()){
-			
-			PreparedStatement ps =  con.prepareStatement("SELECT c.c_id,c.c_name,sum(b.seats) FROM batch b "
-					+ "INNER JOIN course c ON c.c_id = b.bid GROUP BY c.c_id");
-			
-			ResultSet rs = ps.executeQuery();
-			
-			boolean flag = true;
-			
-			while(rs.next()) {
-				
-				int cid = rs.getInt(1);
-				String name = rs.getString(2);
-				int totalFees = rs.getInt(3);
-				
-				flag = false;
-				
-				CoursesDTO course = new CoursesDTO(cid, name, totalFees);
-				
-				courses.add(course);
-			}
-			
-			if(flag) throw new StudentException("No course Found");
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return courses;
 	}
-
-	@Override
-	public Student login(String username, String password) throws StudentException {
-		// TODO Auto-generated method stub
-		Student student = null;
-		
-		try(Connection conn = DBUtil.ProvideConnection()){
-			
-			PreparedStatement ps =  conn.prepareStatement("SELECT * FROM student WHERE email = ? AND password = ?");
-			ps.setString(1,username);
-			ps.setString(2,password);
-			
-			ResultSet rs = ps.executeQuery();
-			
-			if(rs.next()) {
-				int roll = rs.getInt("roll");
-				String name = rs.getString("name");
-				String gender = rs.getString("gender");
-				String email = rs.getString("email");
-				String pass = rs.getString("password");
-				
-				student = new Student(roll,name,gender,email,pass);
-			}else {
-				throw new StudentException("Student Not Found");
-			}
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			throw new StudentException(e.getMessage());
-		}
-		
-		
-		return student;
+	
+	return msz;
 	}
 
 	
+	
+	@Override
+	public Student login(String username, String password) throws StudentException {
 
+		Student s= new Student();
+
+		try (Connection conn=utility.provideconnetion()){
+			
+		PreparedStatement ps=	conn.prepareStatement("Select * from students where semail=? and spassword =?");
+		ps.setString(1,username);
+		ps.setString(2, password);
+		
+		ResultSet rs=	ps.executeQuery();
+			
+	if(rs.next()) {
+		
+	 s= new Student(rs.getInt("sroll"),rs.getString("sname"),rs.getString("semail"),null);
+		
+		
+	}else {
+		throw new StudentException("Invalid Email or password");
+	}
+			
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+		throw new StudentException(e.getMessage());
+		}
+		
+		
+		return s;
+		
+	}
+
+	
+	
+	@Override
+	public List<InformationCourseDTO> detailsAllCourse() throws StudentException {
+		
+		List<InformationCourseDTO> list= new ArrayList<>();
+		
+		
+		
+		try (Connection conn=utility.provideconnetion()){
+			
+
+PreparedStatement ps=	conn.prepareStatement("select * from courses");
+				
+			ResultSet rs= ps.executeQuery();
+			
+			if(rs.next()) {
+				
+				PreparedStatement ps1=	conn.prepareStatement("select c.c_name,c.fee,b.bname,b.seats from batch b INNER JOIN courses c "
+						+ "ON b.cId = c.c_id  ");
+				
+				
+				
+	      ResultSet rs2=ps1.executeQuery();
+				
+				
+	      while(rs2.next()) {
+	    	  
+	    	  int seats = rs2.getInt("b.seats");
+				String bname = rs2.getString("b.bname");
+				String cname = rs2.getString("c.c_name");
+				int fee = rs2.getInt("c.fee");
+			
+				InformationCourseDTO co= new InformationCourseDTO(cname, fee, bname, seats);
+				
+				
+				list.add(co);
+				
+	    	  
+	    	  
+	    	  
+	      }if(list.size()==0) {
+	    	  throw new StudentException("Empty data");
+	      }
+	      
+				
+			}else {
+				throw new StudentException("Invalid Id");
+			}
+		
+			
+			
+			
+			
+
+		} catch (SQLException e) {
+			// TODO: handle exception
+		
+			throw new StudentException(e.getMessage());
+			
+		}
+		
+		
+		
+		
+		
+		return list;
+	}
+
+	@Override
+	public String registration(Student s) throws StudentException {
+		
+
+		String msz="Student Not Registered";
+		
+		try (Connection conn=utility.provideconnetion()){
+			
+			PreparedStatement ps=	conn.prepareStatement("insert into students(semail,spassword,sname) values(?,?,?)");
+				
+			ps.setString(1, s.getEmail());
+			ps.setString(2, s.getPassword());
+			ps.setString(3, s.getName());
+			
+			
+	       int	x=	ps.executeUpdate();
+				
+	       if(x>0) {
+
+	    	 
+	 	    			  msz="Registration Succesful";
+	 	    		  }else {
+	 	    			  msz="Some Registration eroor occure";
+	 	    		  }
+	    		    	
+	    		    
+	    		  
+				
+			} catch (SQLException e) {
+				// TODO: handle exception
+				
+				throw new StudentException(e.getMessage());
+		
+			}
+			
+			
+		
+				 
+			 
+			 
+		
+		return msz;
+		
+	}
+
+
+	
+	
 }

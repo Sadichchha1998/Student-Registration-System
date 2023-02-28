@@ -1,60 +1,53 @@
-package com.masai.Model;
+package com.masai.model;
 
 public class Admin {
 
+	private int id;
 	
-	private int aid;
-	private String aname;
-	private String username;
-	private String password;
-	
-	public Admin() {}
-	
-	public Admin(int aid, String aname, String username, String password) {
+	private String name;
+	private String pass;
+	public Admin(int id, String name, String pass) {
 		super();
-		this.aid = aid;
-		this.aname = aname;
-		this.username = username;
-		this.password = password;
+		this.id = id;
+		this.name = name;
+		this.pass = pass;
 	}
 
-	public int getAid() {
-		return aid;
-	}
-
-	public void setAid(int aid) {
-		this.aid = aid;
-	}
-
-	public String getAname() {
-		return aname;
-	}
-
-	public void setAname(String aname) {
-		this.aname = aname;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	@Override
-	public String toString() {
-		return "Admin ID : "+this.aid+"\nAdmin Name : "+this.aname+"\nAdmin Username : "+this.username+"\nAdmin Password : "+this.password;
-	}
-	
-	
-	
+public Admin() {
+	// TODO Auto-generated constructor stub
 }
+
+@Override
+public String toString() {
+	return "Admin [id=" + id + ", name=" + name + ", pass=" + pass + "]";
+}
+
+public int getId() {
+	return id;
+}
+
+public void setId(int id) {
+	this.id = id;
+}
+
+public String getName() {
+	return name;
+}
+
+public void setName(String name) {
+	this.name = name;
+}
+
+public String getPass() {
+	return pass;
+}
+
+public void setPass(String pass) {
+	this.pass = pass;
+}
+
+	
+	
+
+}
+

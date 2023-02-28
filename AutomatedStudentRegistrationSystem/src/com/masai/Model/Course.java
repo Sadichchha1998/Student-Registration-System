@@ -1,56 +1,41 @@
-package com.masai.Model;
+package com.masai.model;
 
 public class Course {
-	
-	private int cid;
-	private String cname;
+
+	private  int cid;
+	private String c_name;
 	private int fee;
+	private int seats;
 	
-	public Course() {}
-	
-	
-
-	public Course(int cid, String cname, int fee) {
-		super();
-		this.cid = cid;
-		this.cname = cname;
-		this.fee = fee;
-	}
-
-
-
 	public int getCid() {
 		return cid;
 	}
-
 	public void setCid(int cid) {
 		this.cid = cid;
 	}
-
-	public String getCname() {
-		return cname;
+	public String getC_name() {
+		return c_name;
 	}
-
-	public void setCname(String cname) {
-		this.cname = cname;
+	public void setC_name(String c_name) {
+		this.c_name = c_name;
 	}
-
 	public int getFee() {
 		return fee;
 	}
-
 	public void setFee(int fee) {
 		this.fee = fee;
 	}
-
-
-
-
+	public int getSeats() {
+		return seats;
+	}
+	public void setSeats(int seats) {
+		this.seats = seats;
+	}
 	@Override
 	public String toString() {
-		return "Course id : "+cid+"\nCourse name : "+cname+"\nCourse fee : "+fee;
+		return "Course [cid=" + cid + ", c_name=" + c_name + ", fee=" + fee + ", seats=" + seats + "]";
 	}
 	
 	
-
+	
 }

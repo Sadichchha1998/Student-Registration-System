@@ -1,24 +1,25 @@
-package com.masai.Model;
+package com.masai.model;
 
 public class Student {
-	
-	
+
 	private int roll;
-	private String name;
-	private String gender;
+
+
 	private String email;
 	private String password;
+	private String name;
+	
 	
 	public Student() {};
 	
 	
 	
 	
-	public Student(int roll, String name, String gender, String email, String password) {
+	public Student(int roll, String name, String email, String password) {
 		super();
 		this.roll = roll;
 		this.name = name;
-		this.gender = gender;
+	
 		this.email = email;
 		this.password = password;
 	}
@@ -38,12 +39,8 @@ public class Student {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getGender() {
-		return gender;
-	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
+	
+	
 	public String getEmail() {
 		return email;
 	}
@@ -62,9 +59,8 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return "Student name : "+name+"\nStudent roll : "+roll+"\nStudent Gender : "+gender+"\nStudent Email : "+email+"\nStudent password :"+password;
+		return "Student name : "+name+"\nStudent roll : "+roll+"\nStudent Email : "+email+"\nStudent password :"+password;
 	}
-	
 	
 	
 }
